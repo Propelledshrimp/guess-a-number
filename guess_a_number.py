@@ -5,7 +5,7 @@ low = 1
 high = 100
 
 rand = random.randint(low, high)
-print("I'm thinking of a number from " + str(low) + "to " str(high) " .");
+print("I'm thinking of a number from " + str(low) + " to " + str(high) + " .");
 
 guess = -1
 
