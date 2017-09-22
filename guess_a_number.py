@@ -1,10 +1,10 @@
-
+import math
 import random
 
 # config
 low = 1
 high = 100
-limit = 10
+limit = math.ceil(math.log(high-low+1, 2))  
 
 # helper functions
 def show_start_screen():
@@ -37,6 +37,7 @@ def get_guess():
 
 def pick_number():
     print("I'm thinking of a number from " + str(low) + " to " + str(high) +".")
+    print("You will have " + str(limit) + " attempts to guess the number.") 
 
     return random.randint(low, high)
 
@@ -49,12 +50,31 @@ def check_guess(guess, rand):
 def show_result(guess, rand):
     if guess == rand:
         print("You win!")
+        print("    ./**, ,******,.  .,*/(*,((,.   ")   
+        print("   ,    * .**,*,,,.  .,*/(/,   ,   ")   
+        print("    *    ..,,,,,,,.  .,*/(     ,   ")   
+        print("    .*     .,,,,,,.  .,/(#    ,    ")   
+        print("      ,.  , ..,,,,. .,*(#,  ..     ")   
+        print("        ,. ...,,*,...,/(( ..       ")   
+        print("           ...,,**,,,*//,          ")   
+        print("             * ,,****/*            ")   
+        print("           ,.. .,**/  *            ")   
+        print("                 ,*                ")   
+        print("                ,,,                ")   
+        print("                ,.*                ")   
+        print("                * *                ")   
+        print("              ,**.,/*              ")   
+        print("           *@@@@@@@@@@@&           ")   
+        print("           /&,,,..... %&           ")   
+        print("           /%,,,,,,,..%&           ")   
+        print("           &&&&&&&&&&&&&           ") 
     else:
         print("Too bad! The number was " + str(rand) + ".")
 
 def play_again():
     while True:
-        decision = input("Would you like to play again? (y/n) ")
+        decision = input("Would you like to play again? (y/n) ") 
+        decision= decision.lower()
 
         if decision == 'y' or decision == 'yes':
             return True
