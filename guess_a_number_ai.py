@@ -1,4 +1,6 @@
 import random
+#Guess a Number AI
+#Tatem P 
 
 # config
 low = 1
@@ -7,28 +9,49 @@ high = 100
 
 # helper functions
 def show_start_screen():
-    print("*************************")
-    print("*  Guess a Number A.I!  *")
-    print("*************************")
+    print(" _____                               _   _                 _                  ___  _____   _ ") 
+    print("|  __ \                             | \ | |               | |                / _ \|_   _| | |") 
+    print("| |  \/_   _  ___  ___ ___    __ _  |  \| |_   _ _ __ ___ | |__   ___ _ __  / /_\ \ | |   | |") 
+    print("| | __| | | |/ _ \/ __/ __|  / _` | | . ` | | | | '_ ` _ \| '_ \ / _ \ '__| |  _  | | |   | |")        
+    print("| |_\ \ |_| |  __/\__ \__ \ | (_| | | |\  | |_| | | | | | | |_) |  __/ |    | | | |_| |_  |_|") 
+    print(" \____/\__,_|\___||___/___/  \__,_| \_| \_/\__,_|_| |_| |_|_.__/ \___|_|    \_| |_/\___/  (_)") 
 
 def show_credits():
-    pass
+    print("This AI that may or may not take over the world was created by")
+    print("  _______    _                   _____ ")                                
+    print(" |__   __|  | |                 |  __ \ ")                               
+    print("    | | __ _| |_ ___ _ __ ___   | |__) |__  __ _ _ __ ___  ___  _ __ ") 
+    print("    | |/ _` | __/ _ \ '_ ` _ \  |  ___/ _ \/ _` | '__/ __|/ _ \| '_ \\")   
+    print("    | | (_| | ||  __/ | | | | | | |  |  __/ (_| | |  \__ \ (_) | | | |")
+    print("    |_|\__,_|\__\___|_| |_| |_| |_|   \___|\__,_|_|  |___/\___/|_| |_|") 
     
-def get_guess(current_low, current_high):
+    
+def get_guess(current_low, current_high, difficulty):
     """
     Return a truncated average of current low and high.
     """
-    guess = (current_low + current_high)//2
-    return guess 
-    
+    if difficulty == "easy":
+        guess = randint(current_low, current_high)
+        return guess
+
+    elif difficulty == "medium":
+        pass 
+ 
+    elif difficulty == "hard":
+       guess = (current_low + current_high)//2
+       return guess 
+
 
 def pick_number():
     """
     Ask the player to think of a number between low and high.
     Then  wait until the player presses enter.
     """
-    number = input("Think of a number between " + str(low) + " and " + str(high) + " and I will try to guess it: " )
-     
+    difficulty = input("Before we get started please choose a diffuculty. Easy, Medium, or Hard: " )
+    difficulty = difficulty.lower()
+    return difficulty
+    number = input("Think of a number between " + str(low) + " and " + str(high) + " and I will try to guess it. Press Enter when you have your number." )
+    
 
 def check_guess(guess):
     """
@@ -37,17 +60,21 @@ def check_guess(guess):
              0 if the guess was correct
              1 if the guess was too high
     """
-    print(str(guess))
-    check_number = input("Is this number too high, too low, or correct? Answer high, low, or correct: ")
-    check_number = check_number.lower() 
-    if check_number == "low":
-        check = -1
-    elif check_number == "correct":
-        check = 0
-    elif check_number == "high":
-        check = 1
+    while True :
+        print(str(guess))
+        check_number = input("Is this number too high, too low, or correct? Answer high, low, or correct: ")
+        check_number = check_number.lower() 
+        if check_number == "low":
+            return -1
+        elif check_number == "correct":
+            return 0
+        elif check_number == "high":
+            return 1
+        else:
+            print("Please use a valid input.") 
+        
 
-    return check 
+     
 
 def show_result(check_number):
     if check_number == "correct" :
