@@ -6,7 +6,8 @@ import random
 low = 1
 high = 100
 difficulty = input("Before we get started, please choose a difficulty. Easy, Medium, or Hard: ")
-difficulty = difficulty.lower() 
+difficulty = difficulty.lower()
+difficulty = difficulty.strip() 
  
 
 # helper functions
@@ -26,21 +27,23 @@ def show_credits():
     print("    | |/ _` | __/ _ \ '_ ` _ \  |  ___/ _ \/ _` | '__/ __|/ _ \| '_ \\")   
     print("    | | (_| | ||  __/ | | | | | | |  |  __/ (_| | |  \__ \ (_) | | | |")
     print("    |_|\__,_|\__\___|_| |_| |_| |_|   \___|\__,_|_|  |___/\___/|_| |_|") 
-    
+
     
 def get_guess(current_low, current_high):
     """
     Return a truncated average of current low and high.
     """
-    if difficulty == "easy" or difficulty == "easy ":
+    if difficulty == "easy":
         guess = random.randint(current_low, current_high)
         return guess
 
-    elif difficulty == "medium" or difficulty == "medium ":
-         guess = random.randrange(5,105,5) 
-         pass
+    elif difficulty == "medium":
+         guess = (current_low + current_high)//2
+         round(guess)*5 
+         return guess
+         
     
-    elif difficulty == "hard" or difficulty == "hard ":
+    elif difficulty == "hard":
        guess = (current_low + current_high)//2
        return guess 
 
@@ -63,7 +66,8 @@ def check_guess(guess):
     while True :
         print(str(guess))
         check_number = input("Is this number too high, too low, or correct? Answer high, low, or correct: ")
-        check_number = check_number.lower() 
+        check_number = check_number.lower()
+        check_number = check_number.strip() 
         
         if check_number == "low" or check_number == "low ":
             return -1
@@ -84,10 +88,11 @@ def show_result(check_number):
 def play_again():
     while True:
         decision = input("I won, inferior human. Would you like to play again? (y/n) ")
-        decision = decision.lower() 
-        if decision == 'y' or decision == 'yes' or decision == 'y ' or decision == 'yes ' :
+        decision = decision.lower()
+        decision = decision.strip() 
+        if decision == 'y' or decision == 'yes':
             return True
-        elif decision == 'n' or decision == 'no' or decision == 'n ' or decision == 'no ':
+        elif decision == 'n' or decision == 'no':
             return False
         else:
             print("I don't understand. Please enter 'y' or 'n'.")
