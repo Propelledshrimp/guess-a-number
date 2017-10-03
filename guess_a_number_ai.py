@@ -38,10 +38,15 @@ def get_guess(current_low, current_high):
         return guess
 
     elif difficulty == "medium":
-         guess = (current_low + current_high)//2
-         round(guess)*5 
-         return guess
-         
+         for guess in range(current_low, current_high):
+                 guess = (current_low + current_high)//2
+                 if(guess%5 >=0):
+                    guess = (guess//5)*5
+                    return guess
+                 elif (random.randrange(current_low, current_high)<= 5): 
+                     guess = random.randint(current_low, current_high)
+                     return guess
+          
     
     elif difficulty == "hard":
        guess = (current_low + current_high)//2
