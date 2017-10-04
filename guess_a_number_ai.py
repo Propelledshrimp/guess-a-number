@@ -5,19 +5,30 @@ import random
 # config
 low = 1
 high = 100
-difficulty = input("Before we get started, please choose a difficulty. Easy, Medium, or Hard: ")
-difficulty = difficulty.lower()
-difficulty = difficulty.strip() 
- 
-
 # helper functions
+
 def show_start_screen():
     print(" _____                               _   _                 _                  ___  _____   _ ") 
     print("|  __ \                             | \ | |               | |                / _ \|_   _| | |") 
     print("| |  \/_   _  ___  ___ ___    __ _  |  \| |_   _ _ __ ___ | |__   ___ _ __  / /_\ \ | |   | |") 
     print("| | __| | | |/ _ \/ __/ __|  / _` | | . ` | | | | '_ ` _ \| '_ \ / _ \ '__| |  _  | | |   | |")        
     print("| |_\ \ |_| |  __/\__ \__ \ | (_| | | |\  | |_| | | | | | | |_) |  __/ |    | | | |_| |_  |_|") 
-    print(" \____/\__,_|\___||___/___/  \__,_| \_| \_/\__,_|_| |_| |_|_.__/ \___|_|    \_| |_/\___/  (_)") 
+    print(" \____/\__,_|\___||___/___/  \__,_| \_| \_/\__,_|_| |_| |_|_.__/ \___|_|    \_| |_/\___/  (_)")
+
+def set_difficulty():
+    difficulty = input("Before we get started, please choose a difficulty. Easy, Medium, or Hard: ")
+    difficulty = difficulty.lower()
+    difficulty = difficulty.strip()
+    return difficulty
+
+def get_tries():
+    tries = 0
+    if check == 1 :
+        tries+=1
+        return tries
+    elif check == -1 :
+        tries +=1
+        return tries 
 
 def show_credits():
     print("This AI that may or may not take over the world was created by")
@@ -29,7 +40,7 @@ def show_credits():
     print("    |_|\__,_|\__\___|_| |_| |_| |_|   \___|\__,_|_|  |___/\___/|_| |_|") 
 
     
-def get_guess(current_low, current_high):
+def get_guess(current_low, current_high, difficulty):
     """
     Return a truncated average of current low and high.
     """
@@ -40,10 +51,10 @@ def get_guess(current_low, current_high):
     elif difficulty == "medium":
          for guess in range(current_low, current_high):
                  guess = (current_low + current_high)//2
-                 if(guess%5 >=0):
+                 if(guess%5 >=0) and (current_high - current_low > 5):
                     guess = (guess//5)*5
                     return guess
-                 elif (random.randrange(current_low, current_high)<= 5): 
+                 elif (current_high - current_low <= 5): 
                      guess = random.randint(current_low, current_high)
                      return guess
           
@@ -68,17 +79,18 @@ def check_guess(guess):
              0 if the guess was correct
              1 if the guess was too high
     """
+  
     while True :
         print(str(guess))
         check_number = input("Is this number too high, too low, or correct? Answer high, low, or correct: ")
         check_number = check_number.lower()
         check_number = check_number.strip() 
         
-        if check_number == "low" or check_number == "low ":
+        if check_number == "low" or check_number == "low ": 
             return -1
         elif check_number == "correct" or check_number == "correct " :
             return 0
-        elif check_number == "high" or check_number == "high ":
+        elif check_number == "high" or check_number == "high ": 
             return 1
         else:
             print("Please use a valid input.") 
@@ -90,9 +102,9 @@ def show_result(check_number):
     if check_number == "correct" :
         print("I won, inferior human.") 
 
-def play_again():
+def play_again(tries):
     while True:
-        decision = input("I won, inferior human. Would you like to play again? (y/n) ")
+        decision = input("I won, inferior human, and only in " +str(tries) + " tries. Would you like to play again? (y/n) ")
         decision = decision.lower()
         decision = decision.strip() 
         if decision == 'y' or decision == 'yes':
@@ -106,19 +118,19 @@ def play():
     current_low = low
     current_high = high
     check = -1
-    
+    tries = 0 
+    difficulty = set_difficulty()
     pick_number()
     
     while check != 0:
-        guess = get_guess(current_low, current_high)
+        guess = get_guess(current_low, current_high, difficulty)
         check = check_guess(guess)
 
         if check == -1:
             current_low = guess + 1
             
         elif check == 1:
-            current_high = guess - 1
-            
+            current_high = guess - 1 
 
 
     
