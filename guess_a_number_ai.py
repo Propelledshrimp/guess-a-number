@@ -19,16 +19,7 @@ def set_difficulty():
     difficulty = input("Before we get started, please choose a difficulty. Easy, Medium, or Hard: ")
     difficulty = difficulty.lower()
     difficulty = difficulty.strip()
-    return difficulty
-
-def get_tries():
-    tries = 0
-    if check == 1 :
-        tries+=1
-        return tries
-    elif check == -1 :
-        tries +=1
-        return tries 
+    return difficulty 
 
 def show_credits():
     print("This AI that may or may not take over the world was created by")
@@ -98,13 +89,13 @@ def check_guess(guess):
 
      
 
-def show_result(check_number):
-    if check_number == "correct" :
-        print("I won, inferior human.") 
+def show_result(check, tries):
+    if check == 0:
+        print("It took me " + str(tries) + " guesses to guess your number.")  
 
-def play_again(tries):
-    while True:
-        decision = input("I won, inferior human, and only in " +str(tries) + " tries. Would you like to play again? (y/n) ")
+def play_again():
+    while True: 
+        decision = input("I won, inferior human. Would you like to play again? (y/n) ")
         decision = decision.lower()
         decision = decision.strip() 
         if decision == 'y' or decision == 'yes':
@@ -128,10 +119,13 @@ def play():
 
         if check == -1:
             current_low = guess + 1
-            
+            tries+= 1
+           
         elif check == 1:
-            current_high = guess - 1 
-
+            current_high = guess - 1
+            tries += 1
+         
+    show_result(check, tries) 
 
     
 
