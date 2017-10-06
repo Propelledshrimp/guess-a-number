@@ -28,7 +28,14 @@ def show_credits():
     print("    | | __ _| |_ ___ _ __ ___   | |__) |__  __ _ _ __ ___  ___  _ __ ") 
     print("    | |/ _` | __/ _ \ '_ ` _ \  |  ___/ _ \/ _` | '__/ __|/ _ \| '_ \\")   
     print("    | | (_| | ||  __/ | | | | | | |  |  __/ (_| | |  \__ \ (_) | | | |")
-    print("    |_|\__,_|\__\___|_| |_| |_| |_|   \___|\__,_|_|  |___/\___/|_| |_|") 
+    print("    |_|\__,_|\__\___|_| |_| |_| |_|   \___|\__,_|_|  |___/\___/|_| |_|")
+    print(" __  _____             ____            _____  _____  __   ______")
+    print("/  ||  _  |           / ___|          / __  \|  _  |/  | |___  /") 
+    print("`| || |/' |  ______  / /___   ______  `' / /'| |/' |`| |    / / ") 
+    print(" | ||  /| | |______| | ___ \ |______|   / /  |  /| | | |   / /  ") 
+    print("_| |\ |_/ /          | \_/ |          ./ /___\ |_/ /_| |_./ /   ")
+    print("\___/\___/           \_____/          \_____/ \___/ \___/\_/    ") 
+                                                             
 
     
 def get_guess(current_low, current_high, difficulty):
@@ -91,7 +98,7 @@ def check_guess(guess):
 
 def show_result(check, tries):
     if check == 0:
-        print("It took me " + str(tries) + " guesses to guess your number.")  
+        print("It took me " + str(tries) + " attempt(s) to guess your number.")  
 
 def play_again():
     while True: 
@@ -109,7 +116,7 @@ def play():
     current_low = low
     current_high = high
     check = -1
-    tries = 0 
+    tries = 1 
     difficulty = set_difficulty()
     pick_number()
     
